@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -48,106 +49,64 @@ function App() {
       .finally(() => setLoading(false));
   };
 
-  // ✅ UI Styles
-  const container = {
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#f8f9fa",
-    minHeight: "100vh",
-    padding: "40px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
-  };
-
-  const card = {
-    background: "white",
-    padding: "30px",
-    borderRadius: "12px",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-    width: "600px",
-  };
-
-  const button = {
-    backgroundColor: "#007bff",
-    border: "none",
-    color: "white",
-    padding: "8px 14px",
-    borderRadius: "6px",
-    cursor: "pointer",
-    marginLeft: "8px",
-  };
-
-  const input = {
-    padding: "8px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    width: "60%",
-  };
-
-  const heading = {
-    color: "#343a40",
-  };
-
   return (
-    <div style={container}>
-      <div style={card}>
-        <h1 style={heading}>🎓 Students API (React + Vite)</h1>
+    <div className="app-container">
+      <div className="card">
+        <h1 className="title">🎓 Students API (React + Vite)</h1>
 
-        {loading && <p>⏳ Loading...</p>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {loading && <p className="loading">⏳ Loading...</p>}
+        {error && <p className="error">{error}</p>}
 
         {/* All Students */}
-        <h2>All Students</h2>
-        {students.length === 0 ? (
-          <p>No students found.</p>
-        ) : (
-          <ul>
-            {students.map(s => (
-              <li key={s.id} style={{ marginBottom: "10px" }}>
-                {s.name} ({s.course})
-                <button
-                  onClick={() => getStudentById(s.id)}
-                  style={button}
-                >
-                  View
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+        <section>
+          <h2>All Students</h2>
+          {students.length === 0 ? (
+            <p>No students found.</p>
+          ) : (
+            <ul className="student-list">
+              {students.map(s => (
+                <li key={s.id}>
+                  <span>{s.name} ({s.course})</span>
+                  <button onClick={() => getStudentById(s.id)}>View</button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
 
         {/* Student by ID */}
         {student && (
-          <div style={{ marginTop: "20px" }}>
+          <section className="student-details">
             <h2>Student Details</h2>
             <p><b>ID:</b> {student.id}</p>
             <p><b>Name:</b> {student.name}</p>
             <p><b>Course:</b> {student.course}</p>
-          </div>
+          </section>
         )}
 
         {/* Filter by Course */}
-        <div style={{ marginTop: "30px" }}>
+        <section className="filter-section">
           <h2>Filter Students by Course</h2>
-          <input
-            type="text"
-            value={course}
-            onChange={(e) => setCourse(e.target.value)}
-            placeholder="Enter course (e.g., BSIT)"
-            style={input}
-          />
-          <button onClick={filterByCourse} style={button}>Filter</button>
+          <div className="filter-box">
+            <input
+              type="text"
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+              placeholder="Enter course (e.g., BSIT)"
+            />
+            <button onClick={filterByCourse}>Filter</button>
+          </div>
 
-          <ul style={{ marginTop: "10px" }}>
+          <ul className="student-list">
             {courseStudents.length === 0 ? (
-              <p style={{ color: "#6c757d" }}>No filtered results yet.</p>
+              <p className="muted">No filtered results yet.</p>
             ) : (
               courseStudents.map(s => (
                 <li key={s.id}>{s.name} ({s.course})</li>
               ))
             )}
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   );

@@ -1,42 +1,94 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General layout */
+.app-container {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  min-height: 100vh;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Card container */
+.card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  width: 650px;
+}
+
+/* Typography */
+.title {
+  color: #222;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h2 {
+  margin-top: 30px;
+  color: #333;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Lists */
+.student-list {
+  list-style: none;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.student-list li {
+  display: flex;
+  justify-content: space-between;
+  background: #f8f9fa;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 6px;
 }
 
-.card {
-  padding: 2em;
+/* Buttons */
+button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Inputs */
+.filter-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-box input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Feedback text */
+.loading {
+  color: #007bff;
+}
+
+.error {
+  color: red;
+}
+
+.muted {
+  color: #6c757d;
+}
+
+.student-details {
+  background: #f1f3f5;
+  padding: 15px;
+  border-radius: 10px;
 }
